@@ -12,7 +12,6 @@ package nsb.discountstrategy;
 public class Receipt {
     private DatabaseStrategy db;
     private Customer customer;
-    private LineItem line;
     private LineItem[] lineItems;
     
 
@@ -74,6 +73,7 @@ public class Receipt {
         double totalBeforeDiscount = 0;
         double totalAfterDiscount = 0;
         double totalDiscount = 0;
+        double totalWithTax = 0;
         StringBuilder sb = new StringBuilder();
         sb.append("Thank you ").append(customer.getCustName() + "  \n");
         sb.append("For Shopping at Kohls Department Store   \n");
@@ -81,13 +81,14 @@ public class Receipt {
         sb.append("\n");
         
         
-        sb.append( "ProdID          Item              UnitCost           Qty              Ext. Price         Discount     \n" + 
+        sb.append( "ProdID          Item                UnitCost            Qty              Ext. Price         Discount     \n" + 
                   "----------------------------------------------------------------------------------------------------------- \n" );
            LineItem[] items =getLineItems();
             for(LineItem item : items) {
             totalBeforeDiscount += item.getExtPrice();
             totalAfterDiscount += (item.getExtPrice() - item.getDiscount());
             totalDiscount += item.getDiscount();
+            totalWithTax += ((item.getExtPrice() - item.getDiscount()) * (10.25/100.00 + 1));
             
            sb.append(item.getLineItemData());
             }
@@ -96,9 +97,10 @@ public class Receipt {
            
 
            sb.append("                                                                           Grand Total: \n");
-           sb.append("                                                                           Total Before discount: ").append(totalBeforeDiscount + " \n");
-           sb.append("                                                                           Total After Discount: ").append(totalAfterDiscount + " \n");
-           sb.append("                                                                           Total Saved Today: ").append(totalDiscount + " \n");
+           sb.append("                                                                           Total Before Discount:  ").append(String.format("%.2f", totalBeforeDiscount) + " \n");
+           sb.append("                                                                           Total After Discount:  ").append(totalAfterDiscount + " \n");
+           sb.append("                                                                           Total With Tax:  ").append(String.format("%.2f", totalWithTax) + " \n");
+           sb.append("                                                                           Total Saved Today:  ").append(totalDiscount + " \n");
            
     return sb.toString();
     }
