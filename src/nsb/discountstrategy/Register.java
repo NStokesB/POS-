@@ -17,8 +17,8 @@ public class Register {
     public final void startNewSale(String custId, DatabaseStrategy db){
         receipt = new Receipt(custId, db);
     }
-    public final void endSale(){
-        
+    public final void endSale(OutputStrategy ops){
+        ops.printLn(receipt);
         
     }
     public final void addItemToSale(String prodId, int qty){

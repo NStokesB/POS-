@@ -19,25 +19,29 @@ public class NSBDiscountStrategy {
         DatabaseStrategy db = new FakeDatabase();
         
         //Start talking to objects
+        
         Register register = new Register();
-        LineItem line = new LineItem();
+        
+        ConsoleOutput co = new ConsoleOutput();
+        JOptionOutputStrategy joos= new JOptionOutputStrategy();
         register.startNewSale("100", db);
         
         Customer customer = register.getReceipt().getCustomer();
-        System.out.println("Customer " + customer.getCustName() + " found and added to the receipt ");
         
         register.addItemToSale("11", 2);
         register.addItemToSale("22", 1);
         register.addItemToSale("33", 3);
         
-        LineItem[] items = register.getReceipt().getLineItems();
-        for(LineItem item : items) {
-            System.out.println(item.getProduct().getProdName());
-            
-            
-            System.out.print(line.getLineItemData());
+        register.endSale(joos);
+        register.endSale(co);
+        
+//        LineItem[] items = register.getReceipt().getLineItems();
+//        for(LineItem item : items) {
+//            
+//            
+//            System.out.println(item.getLineItemData());
         }
     }
     
     
-}
+

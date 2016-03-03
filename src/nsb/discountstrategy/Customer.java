@@ -18,6 +18,10 @@ public class Customer {
         setCustName(custName);
     }
 
+    Customer() {
+        
+    }
+
     public final String getCustId() {
         return custId;
     }

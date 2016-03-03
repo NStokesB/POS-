@@ -11,6 +11,7 @@ package nsb.discountstrategy;
  */
 public class LineItem {
     private Product product;
+    private Customer customer;
     private int qty;
 
     public LineItem(String prodId, int qty, DatabaseStrategy db) {
@@ -21,14 +22,18 @@ public class LineItem {
     public LineItem() {
     }
     
-    
-    public String getLineItemData(){
-        String data = "Prod ID      Item        Qty       Discount     SubTotal\n" + 
-                   "---------------- \n" 
-                + this.getProduct().getProdId() + "   " + this.getProduct().getProdName()
-                + "  " + this.getQty() + "   " + this.getDiscount() + this.getSubTotal(product.getUnitCost(), qty);
+     public String getLineItemData(){
+        String data =              
+                 this.getProduct().getProdId() + "        " + this.getProduct().getProdName()
+                + "              " + this.getProduct().getUnitCost() + "               " + this.getQty() + "              " + String.format("%.2f", this.getExtPrice()) + "               " + String.format("%.2f", this.getDiscount()) + "  \n" ;
+                         
                 return data;
+     }
+   
+      public final double getExtPrice() {
+        return qty * product.getUnitCost();
     }
+     
     public final double getSubTotal(double unitCost, int qty){
         return this.getProduct().getUnitCost() * this.qty;
     }

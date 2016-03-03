@@ -22,6 +22,10 @@ public class Product {
         setDiscount(discount);
         
     }
+
+    Product() {
+        
+    }
     
     public final String getProdId() {
         return prodId;
