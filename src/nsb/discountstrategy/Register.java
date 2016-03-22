@@ -11,7 +11,7 @@ package nsb.discountstrategy;
  */
 public class Register {
     private Receipt receipt;
-    private LineItem lineItem;
+    
     private String storeName;
     
     public final void startNewSale(String custId, DatabaseStrategy db){
@@ -40,8 +40,13 @@ public class Register {
         return storeName;
     }
 
-    public final void setStoreName(String storeName) {
-        //needs validation
+    public final void setStoreName(String storeName)throws IllegalArgumentException {
+
+        if(storeName == null || storeName.length() != 2) {
+            throw new IllegalArgumentException (
+                    "store name must be 2 characters in length");
+
+        }
         this.storeName = storeName;
     }
     

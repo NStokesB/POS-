@@ -33,8 +33,13 @@ public class QtyDiscount implements DiscountStrategy {
         return discountRate;
     }
 
-    public final void setDiscountRate(double discountRate) {
-        //needs validation
+    public final void setDiscountRate(double discountRate) throws IllegalArgumentException {
+
+        if(discountRate <= 0) {
+            throw new IllegalArgumentException (
+                    "discount rate is too small");
+
+        }
         this.discountRate = discountRate;
     }
 
@@ -42,8 +47,13 @@ public class QtyDiscount implements DiscountStrategy {
         return minQty;
     }
 
-    public final void setMinQty(int minQty) {
-        //needs validation
+    public final void setMinQty(int minQty)throws IllegalArgumentException {
+
+        if(minQty < -1) {
+            throw new IllegalArgumentException (
+                    "quantity not valid");
+
+        }
         this.minQty = minQty;
     }
     

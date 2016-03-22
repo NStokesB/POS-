@@ -26,7 +26,7 @@ public class NSBDiscountStrategy {
         JOptionOutputStrategy joos= new JOptionOutputStrategy();
         register.startNewSale("100", db);
         
-        Customer customer = register.getReceipt().getCustomer();
+        //Customer customer = register.getReceipt().getCustomer();
         
         register.addItemToSale("11", 2);
         register.addItemToSale("22", 1);
@@ -34,7 +34,7 @@ public class NSBDiscountStrategy {
         
         register.endSale(joos);
         register.endSale(co);
-        
+//        
 //        LineItem[] items = register.getReceipt().getLineItems();
 //        for(LineItem item : items) {
 //            

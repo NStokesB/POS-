@@ -18,15 +18,17 @@ public class Customer {
         setCustName(custName);
     }
 
-    Customer() {
-        
-    }
-
     public final String getCustId() {
         return custId;
     }
 
-    public final void setCustId(String custId) {
+    public final void setCustId(String custId)throws IllegalArgumentException {
+
+        if(custId == null || custId.length() != 2) {
+            throw new IllegalArgumentException (
+                    "cust Id must be 2 characters in length");
+
+        }
         this.custId = custId;
     }
 
@@ -34,7 +36,13 @@ public class Customer {
         return custName;
     }
 
-    public final void setCustName(String custName) {
+    public final void setCustName(String custName) throws IllegalArgumentException {
+
+        if(custName == null || custName.length() != 2) {
+            throw new IllegalArgumentException (
+                    "cust name must be 2 characters in length");
+
+        }
         this.custName = custName;
     }
 
