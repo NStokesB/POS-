@@ -24,7 +24,7 @@ public class Customer {
 
     public final void setCustId(String custId)throws IllegalArgumentException {
 
-        if(custId == null || custId.length() != 2) {
+        if(custId == null || custId.isEmpty() || custId.length() != 2) {
             throw new IllegalArgumentException (
                     "cust Id must be 2 characters in length");
 
@@ -38,7 +38,7 @@ public class Customer {
 
     public final void setCustName(String custName) throws IllegalArgumentException {
 
-        if(custName == null || custName.length() != 2) {
+        if(custName == null || custName.isEmpty() || custName.length() != 2) {
             throw new IllegalArgumentException (
                     "cust name must be 2 characters in length");
 
